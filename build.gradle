@@ -1,0 +1,161 @@
+buildscript {
+ repositories {
+  jcenter()
+  maven {
+   url "https://plugins.gradle.org/m2/"
+  }
+ }
+ dependencies {
+  classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+  classpath 'net.researchgate:gradle-release:2.2.2'
+  classpath "gradle.plugin.se.bjurr.gitchangelog:git-changelog-gradle-plugin:1.33"
+ }
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'signing'
+apply plugin: 'com.bmuschko.nexus'
+apply plugin: 'net.researchgate.release'
+apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
+
+task gitChangelogTask(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
+ filePath = "CHANGELOG.md";
+ templateContent = """
+# Changelog
+
+{{#tags}}
+## {{name}}
+ {{#issues}}
+  {{#hasIssue}}
+   {{#hasLink}}
+### {{name}} [{{issue}}]({{link}}) {{title}}
+   {{/hasLink}}
+   {{^hasLink}}
+### {{name}} {{issue}} {{title}}
+   {{/hasLink}}
+  {{/hasIssue}}
+  {{^hasIssue}}
+### {{name}}
+  {{/hasIssue}}
+
+  {{#commits}}
+**{{{messageTitle}}}**
+
+{{#messageBodyItems}}
+ * {{.}} 
+{{/messageBodyItems}}
+
+[{{hash}}](https://github.com/tomasbjerre/java-method-invocation-builder/commit/{{hash}}) {{authorName}} *{{commitTime}}*
+
+  {{/commits}}
+
+ {{/issues}}
+{{/tags}}
+ """;
+ removeIssueFromMessage = true
+}
+
+group = 'se.bjurr.jmib'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+ mavenLocal()
+ mavenCentral()
+}
+
+dependencies {
+ compile 'com.google.guava:guava:16.0.1'
+ compile 'com.squareup:javapoet:1.7.0'
+
+ testCompile 'junit:junit:4.12'
+ testCompile 'org.assertj:assertj-core:2.3.0'
+ testCompile 'org.mockito:mockito-all:1.8.5'
+}
+
+eclipse {
+ classpath {
+  downloadSources = true
+  downloadJavadoc = true
+ }
+}
+
+jar {
+  from 'src/jar/resources'
+}
+
+task annotationsJar(type: Jar, dependsOn:['compileJava']) {
+  classifier = "annotations"
+  from files(sourceSets.main.output.classesDir)
+  includeEmptyDirs false
+  include '**/GenerateMethodInvocationBuilder.class'
+  include '**/Default.class'
+  from files(sourceSets.main.output.resourcesDir)
+}
+
+artifacts {
+  archives annotationsJar
+}
+
+
+sourceSets {
+ main.java.srcDirs = ['src/main/java' ]
+ test.java.srcDirs = ['src/test/java'
+                     ,'src/test/generated' ]
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+ allprojects {
+  tasks.withType(Javadoc) {
+   options.addStringOption('Xdoclint:none', '-quiet')
+  }
+ }
+}
+
+modifyPom {
+ project {
+  name 'Java Method Invocation Builder'
+  description 'Generates builders for invoking methods on instantiated objects.'
+  url 'https://github.com/tomasbjerre/java-method-invocation-builder'
+  inceptionYear '2016'
+   scm {
+   url 'https://github.com/tomasbjerre/java-method-invocation-builder'
+   connection 'scm:https://tomasbjerre@github.com/tomasbjerre/java-method-invocation-builder.git'
+   developerConnection 'scm:git://github.com/tomasbjerre/java-method-invocation-builder.git'
+  }
+
+  licenses {
+   license {
+    name 'The Apache Software License, Version 2.0'
+    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    distribution 'repo'
+   }
+  }
+
+  developers {
+   developer {
+    id 'tomasbjerre'
+    name 'Tomas Bjerre'
+    email 'tomas.bjerre85@gmail.com'
+   }
+  }
+ }
+}
+
+extraArchive {
+ sources = true
+ tests = true
+ javadoc = true
+}
+
+afterReleaseBuild.dependsOn {
+ [install, uploadArchives]
+}
+
+file('src/generated/java').mkdirs()
+compileJava.options.compilerArgs += ['-s', 'src/generated/java'
+                                    ,'-parameters']
+

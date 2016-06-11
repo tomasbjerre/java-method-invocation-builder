@@ -1,0 +1,12 @@
+.factorypath
+.classpath
+.project
+.settings
+src/test/generated/*java
+generated-src
+build
+target
+bin
+temp
+.gradle
+*.class

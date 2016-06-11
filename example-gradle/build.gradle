@@ -1,0 +1,57 @@
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+
+group = 'se.bjurr.jmib'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+ mavenLocal()
+ mavenCentral()
+}
+
+configurations {
+ provided
+ compile.extendsFrom provided
+}
+
+dependencies {
+ provided 'se.bjurr.jmib:java-method-invocation-builder:1.0-SNAPSHOT'
+}
+
+eclipse {
+ classpath {
+  downloadSources = true
+  downloadJavadoc = true
+ }
+}
+
+sourceSets {
+ main.java.srcDirs = ['src/main/java'
+                     ,'src/generated/java' ]
+ test.java.srcDirs = ['src/test/java' ]
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+ allprojects {
+  tasks.withType(Javadoc) {
+   options.addStringOption('Xdoclint:none', '-quiet')
+  }
+ }
+}
+
+compileJava.doFirst {
+ delete "${rootDir}/src/generated"
+ file("${rootDir}/src/generated/java").mkdirs()
+}
+
+clean.doFirst {
+ delete "${rootDir}/src/generated"
+}
+
+compileJava.options.compilerArgs += ['-s', 'src/generated/java'
+                                    ,'-parameters']
+
