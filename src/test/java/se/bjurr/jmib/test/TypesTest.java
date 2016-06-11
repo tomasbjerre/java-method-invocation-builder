@@ -10,8 +10,9 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import se.bjurr.jmib.testcases.RestClass;
-import se.bjurr.jmib.testcases.RestInterface;
+import se.bjurr.jmib.testcases.AClass;
+import se.bjurr.jmib.testcases.AnInterface;
+import se.bjurr.jmib.testcases.ClassWithConstructor;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
@@ -24,8 +25,8 @@ public class TypesTest {
  @BeforeClass
  public static void generate() throws IOException {
   Iterable<? extends File> filesToCompile = findAllJavaFiles(new File(TESTCASES_DIR));
-  List<Class<?>> filesToProcess = newArrayList(RestClass.class, RestInterface.class);
-  CodeGenerationTestBase.processClasses(filesToCompile, filesToProcess);
+  List<Class<?>> filesToProcess = newArrayList(AClass.class, AnInterface.class, ClassWithConstructor.class);
+  AnnotationProcessingTestUtil.processClasses(filesToCompile, filesToProcess);
  }
 
  private static List<File> findAllJavaFiles(File file) {

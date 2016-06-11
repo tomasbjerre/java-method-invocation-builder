@@ -70,6 +70,7 @@ repositories {
 dependencies {
  compile 'com.google.guava:guava:16.0.1'
  compile 'com.squareup:javapoet:1.7.0'
+ compile 'se.bjurr.jmib:java-method-invocation-builder-annotations:1.0'
 
  testCompile 'junit:junit:4.12'
  testCompile 'org.assertj:assertj-core:2.3.0'
@@ -155,7 +156,19 @@ afterReleaseBuild.dependsOn {
  [install, uploadArchives]
 }
 
-file('src/generated/java').mkdirs()
-compileJava.options.compilerArgs += ['-s', 'src/generated/java'
-                                    ,'-parameters']
+compileJava.doFirst {
+ File generatedDir = file("${rootDir}/src/test/generated")
+ if (generatedDir.exists()) {
+  delete generatedDir
+ }
+ generatedDir.mkdirs()
+}
+
+clean.doFirst {
+ File generatedDir = file("${rootDir}/src/test/generated")
+ if (generatedDir.exists()) {
+  delete generatedDir
+ }
+ generatedDir.mkdirs()
+}
 

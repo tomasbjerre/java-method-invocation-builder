@@ -2,7 +2,9 @@
 .classpath
 .project
 .settings
-src/test/generated/*java
+src/test/generated
+example-gradle/src/generated
+example-maven/src/generated
 generated-src
 build
 target
