@@ -35,9 +35,11 @@
 <a id="java-method-invocation-builder--" class="anchor" href="#java-method-invocation-builder--" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Java Method Invocation Builder <a href="https://travis-ci.org/tomasbjerre/java-method-invocation-builder"><img src="https://travis-ci.org/tomasbjerre/java-method-invocation-builder.svg?branch=master" alt="Build Status"></a> <a href="https://maven-badges.herokuapp.com/maven-central/se.bjurr.jmib/java-method-invocation-builder"><img src="https://maven-badges.herokuapp.com/maven-central/se.bjurr.jmib/java-method-invocation-builder/badge.svg" alt="Maven Central"></a>
 </h1>
 
-<p>This is a Java library that enables builders, for invoking methods on instantiated objects, to be generated.</p>
+<p>This is a Java library that enables automatic generation of builders at compile time. Builders used for invoking methods on instantiated objects. It enables default values of method parameters and is making the invocations readable.</p>
 
-<p>Sometimes you are forced to invoke methods that take alot of parameters. This makes the invoking code dirty and hard to read. The problem may be solved with a builder. The builder can have default values for each parameter and when you want to call the method, you just supply the parameters you want to change. This library automates the creation of such builders. It enables default values of method parameters and is making the invocations readable.</p>
+<p>It does not solve the same problem as <a href="https://immutables.github.io/">Immutables</a> or <a href="https://github.com/mkarneim/pojobuilder">POJOBuilder</a>. They are generating builders for creating instances of types. This is about invoking methods on previously instantiated types.</p>
+
+<p>Sometimes you are forced to invoke methods that take alot of parameters. This makes the invoking code dirty and hard to read. The problem may be solved with a builder. The builder can have default values for each parameter and when you want to call the method, you just supply the parameters you want to change. This library automates the creation of such builders.</p>
 
 <p>There are some example builders generated <a href="https://github.com/tomasbjerre/java-method-invocation-builder/tree/master/src/test/expected/se/bjurr/jmib/testcases">here</a>.</p>
 
