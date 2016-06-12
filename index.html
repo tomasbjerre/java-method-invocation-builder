@@ -59,7 +59,7 @@
 public class ClassWithConstructor {
  private final Integer age;
 
- public ClassWithConstructor(String name, Integer age) {
+ public ClassWithConstructor(Integer age) {
   this.age = age;
  }
 
@@ -71,7 +71,7 @@ public class ClassWithConstructor {
 
 <p>A builder will be generated so that you can do this:</p>
 
-<pre><code> ClassWithConstructor instance = new ClassWithConstructor("name", 5);
+<pre><code> ClassWithConstructor instance = new ClassWithConstructor(5);
  Integer ageAfter = ClassWithConstructorGetAgeAfterBuilder.getAgeAfter()//
   .invoke(instance);
  assertThat(ageAfter)//
@@ -80,7 +80,7 @@ public class ClassWithConstructor {
 
 <p>Or avoid using the default value of years:</p>
 
-<pre><code> ClassWithConstructor instance = new ClassWithConstructor("name", 5);
+<pre><code> ClassWithConstructor instance = new ClassWithConstructor(5);
  Integer ageAfter = ClassWithConstructorGetAgeAfterBuilder.getAgeAfter()//
   .withYears(2)//
   .invoke(instance);
