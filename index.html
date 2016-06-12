@@ -37,7 +37,7 @@
 
 <p>This is a Java library that enables builders, for invoking methods on instantiated objects, to be generated.</p>
 
-<p>Sometimes you are forced to invoke methods that take alot of parameters. This makes the invoking code dirty and hard to read. The problem may be solved with a builder. The builder can have default values for each parameter and when you want to call the method, you just supply the parameters you want to change. This library automates the creation of such builders.</p>
+<p>Sometimes you are forced to invoke methods that take alot of parameters. This makes the invoking code dirty and hard to read. The problem may be solved with a builder. The builder can have default values for each parameter and when you want to call the method, you just supply the parameters you want to change. This library automates the creation of such builders. It enables default values of method parameters and is making the invocations readable.</p>
 
 <p>There are some example builders generated <a href="https://github.com/tomasbjerre/java-method-invocation-builder/tree/master/src/test/expected/se/bjurr/jmib/testcases">here</a>.</p>
 
@@ -93,7 +93,7 @@ public class ClassWithConstructor {
 
 <p>This is the original use case that triggered me to start working with this project.</p>
 
-<p>I am using <a href="http://square.github.io/retrofit/">Retrofit</a> to create a client for BitBucket Server. Here is the interface that specifies the <em>pullrequests</em> REST resource.</p>
+<p>I am using <a href="http://square.github.io/retrofit/">Retrofit</a> to create a client for BitBucket Server. That project is hosted <a href="https://github.com/tomasbjerre/bitbucket-server-java-client">here</a>. Here is the interface that specifies the <em>pullrequests</em> REST resource.</p>
 
 <pre><code>public interface BitBucketServerService {
  @GET("/rest/api/1.0/projects/{projectkey}/repos/{repositoryslug}/pull-requests?direction={direction}&amp;at={at}&amp;state={state}&amp;order={order}&amp;withattributes={withattributes}&amp;withproperties={withproperties}")
