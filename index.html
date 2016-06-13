@@ -89,6 +89,32 @@ public class CarService {
   .invoke(instance);
 </code></pre>
 
+<p>In this case the <code>CarService</code> is simply new:ed. But it may also be an interface.</p>
+
+<pre><code>@GenerateMethodInvocationBuilder
+public interface CarService {
+ String getCarsByFilter(//
+   @Default("Color.BLUE") Color color, //
+   @Default("new ProductionYear(2001)") ProductionYear productionYear,//
+   @Default("Tomas") String owner//
+ );
+}
+</code></pre>
+
+<p>And perhaps you don't even have access to the implementation.</p>
+
+<pre><code>public class CarServiceUser {
+ @Inject
+ private CarServie carService;
+
+ public String someMethod() {
+  return CarServiceGetCarsByFilterBuilder.getCarsByFilter()//
+   .withColor(Color.YELLOW)//
+   .invoke(instance);
+ }
+}
+</code></pre>
+
 <h3>
 <a id="rest-api-client-with-interface" class="anchor" href="#rest-api-client-with-interface" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>REST API client with interface</h3>
 
