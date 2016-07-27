@@ -56,6 +56,11 @@ public class CodeGenerator {
        .build());
   }
 
+  String callStatement = "instance." + classMethod.getName() + "(" + parameters(classMethod.getParameters()) + ")";
+  TypeName returns = TypeName.get(classMethod.getReturnType());
+  if (!returns.equals(TypeName.VOID)) {
+   callStatement = "return " + callStatement;
+  }
   TypeSpec typeSpec = javaFile//
     .addMethod(methodBuilder(classMethod.getName())//
       .addModifiers(PUBLIC, STATIC)//
@@ -66,8 +71,8 @@ public class CodeGenerator {
       .addModifiers(PUBLIC)//
       .addParameter(builder(ClassName.get(packageName, classToInvoke), "instance", FINAL)//
         .build())//
-      .addStatement("return instance." + classMethod.getName() + "(" + parameters(classMethod.getParameters()) + ")")//
-      .returns(TypeName.get(classMethod.getReturnType()))//
+      .addStatement(callStatement)//
+      .returns(returns)//
       .build())//
     .build();
 

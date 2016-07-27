@@ -22,6 +22,10 @@ public class AClass {
   return null;
  }
 
+ public void methodWithVoid(String argument) {
+  System.out.println(argument);
+ }
+
  String packagePrivate(//
    @Default("PROJ") String projectKey) {
   return "";
