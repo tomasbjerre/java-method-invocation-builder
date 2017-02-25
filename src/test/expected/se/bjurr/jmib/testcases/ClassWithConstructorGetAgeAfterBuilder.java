@@ -5,7 +5,13 @@ import java.lang.Integer;
 public final class ClassWithConstructorGetAgeAfterBuilder {
   private Integer years;
 
-  private ClassWithConstructorGetAgeAfterBuilder() {
+  private ClassWithConstructor instance;
+
+  private ClassWithConstructorGetAgeAfterBuilder(final ClassWithConstructor instance) {
+    if (instance == null) {
+      throw new java.lang.IllegalStateException("You must supply an instance.");
+    }
+    this.instance = instance;
   }
 
   public ClassWithConstructorGetAgeAfterBuilder withYears(final Integer years) {
@@ -13,11 +19,14 @@ public final class ClassWithConstructorGetAgeAfterBuilder {
     return this;
   }
 
-  public static ClassWithConstructorGetAgeAfterBuilder getAgeAfter() {
-    return new ClassWithConstructorGetAgeAfterBuilder();
+  public static ClassWithConstructorGetAgeAfterBuilder getAgeAfter(final ClassWithConstructor instance) {
+    return new ClassWithConstructorGetAgeAfterBuilder(instance);
   }
 
-  public Integer invoke(final ClassWithConstructor instance) {
-    return instance.getAgeAfter(years);
+  public Integer invoke() {
+    if (this.instance == null) {
+      throw new java.lang.IllegalStateException("You must supply an instance to the builder!");
+    }
+    return this.instance.getAgeAfter(years);
   }
 }

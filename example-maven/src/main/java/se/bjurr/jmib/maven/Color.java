@@ -1,4 +1,4 @@
-package se.bjurr.jmib.testcases;
+package se.bjurr.jmib.maven;
 
 public enum Color {
   BLUE,

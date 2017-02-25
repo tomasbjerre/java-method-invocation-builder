@@ -1,4 +1,4 @@
-package se.bjurr.jmib.testcases;
+package se.bjurr.jmib.maven;
 
 import static se.bjurr.jmib.anotations.BuilderStyle.SUPPLY_INSTANCE_AS_INVOKE_PARAMETER;
 

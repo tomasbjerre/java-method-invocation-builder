@@ -1,4 +1,4 @@
-package se.bjurr.jmib.testcases;
+package se.bjurr.jmib.maven;
 
 public class CustomType {
   private final int value;

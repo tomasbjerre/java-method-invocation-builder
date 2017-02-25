@@ -1,9 +1,11 @@
-package se.bjurr.jmib.testcases;
+package se.bjurr.jmib.maven;
+
+import static se.bjurr.jmib.anotations.BuilderStyle.SUPPLY_INSTANCE_IN_CONSTRUCTOR;
 
 import se.bjurr.jmib.anotations.Default;
 import se.bjurr.jmib.anotations.GenerateMethodInvocationBuilder;
 
-@GenerateMethodInvocationBuilder
+@GenerateMethodInvocationBuilder(style = SUPPLY_INSTANCE_IN_CONSTRUCTOR)
 public class AClass {
   public String customType( //
       CustomType customType) {

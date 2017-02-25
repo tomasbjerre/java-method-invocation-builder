@@ -7,6 +7,5 @@ cd example-gradle
 cd ..
 
 cd example-maven
-mvn clean package eclipse:eclipse
-mvn clean package eclipse:eclipse
+mvn clean eclipse:eclipse package eclipse:eclipse
 cd ..

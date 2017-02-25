@@ -12,10 +12,20 @@ There is a Maven example [here](https://github.com/tomasbjerre/java-method-invoc
 
 There are some [examples here](https://github.com/tomasbjerre/java-method-invocation-builder/tree/master/src/test/java/se/bjurr/jmib/testcases) that generates [these builders](https://github.com/tomasbjerre/java-method-invocation-builder/tree/master/src/test/expected/se/bjurr/jmib/testcases).
 
+
+## Configuraion
+
+You may configure the code generator to create variations of the builders.
+
+ * `@GenerateMethodInvocationBuilder(style=SUPPLY_INSTANCE_AS_INVOKE_PARAMETER)` will add an `invoke(instance)` method.
+ * `@GenerateMethodInvocationBuilder(style=SUPPLY_INSTANCE_WITH_ON_METHOD)` will add an `on(instance)` and `invoke()` method.
+ * `@GenerateMethodInvocationBuilder(style=SUPPLY_INSTANCE_IN_CONSTRUCTOR)` will add an `instance` parameter to the constructor of the builder and `invoke()` method.
+
+
 ## Examples
 Here is one small example to quickly show what the tool does. And one, bigger, example that is the real use case that gave the idea to the tool.
 
-### Small example
+### Example 1
 
 The repo includes examples of how to setup [Maven](https://github.com/tomasbjerre/java-method-invocation-builder/tree/master/example-maven) and/or [Gradle](https://github.com/tomasbjerre/java-method-invocation-builder/tree/master/example-gradle) to do annotation processing. Aside from that you need to annotate the code that should have builders generated.
 
@@ -76,7 +86,7 @@ public class CarServiceUser {
 }
 ```
 
-### REST API client with interface
+### Example 2
 
 This is the original use case that triggered me to start working with this project. **Note that this project has actually nothing to do with [Retrofit](http://square.github.io/retrofit/) or REST services at all**. It can be used on any class, or interface, instance.
 
