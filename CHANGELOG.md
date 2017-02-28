@@ -4,10 +4,19 @@
 ## Unreleased
 ### No issue
 
+**doc**
+
+
+[d5b785e8341c3eb](https://github.com/tomasbjerre/java-method-invocation-builder/commit/d5b785e8341c3eb) Tomas Bjerre *2017-02-28 16:03:53*
+
+
+## 1.3
+### No issue
+
 **Adding BuilderStyle option #1**
 
 
-[c5c29cd4c426431](https://github.com/tomasbjerre/java-method-invocation-builder/commit/c5c29cd4c426431) Tomas Bjerre *2017-02-26 18:48:45*
+[24d4295efbac8a9](https://github.com/tomasbjerre/java-method-invocation-builder/commit/24d4295efbac8a9) Tomas Bjerre *2017-02-28 15:58:35*
 
 **Set theme jekyll-theme-slate**
 

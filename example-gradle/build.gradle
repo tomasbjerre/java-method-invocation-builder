@@ -20,7 +20,7 @@ configurations {
 
 dependencies {
  compile 'se.bjurr.jmib:java-method-invocation-builder-annotations:1.4'
- provided 'se.bjurr.jmib:java-method-invocation-builder:1.3-SNAPSHOT'
+ provided 'se.bjurr.jmib:java-method-invocation-builder:1.4-SNAPSHOT'
 }
 
 eclipse {
