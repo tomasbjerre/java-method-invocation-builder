@@ -1,22 +1,32 @@
 
-# Changelog
+ # Java method invocation builder changelog
+
+Changelog of Java method invocation builder.
 
 ## Unreleased
 ### No issue
 
+**Cleaning build scripts**
+
+
+[ee609f0ec66def6](https://github.com/tomasbjerre/java-method-invocation-builder/commit/ee609f0ec66def6) Tomas Bjerre *2017-12-28 08:03:15*
+
 **doc**
 
 
-[d5b785e8341c3eb](https://github.com/tomasbjerre/java-method-invocation-builder/commit/d5b785e8341c3eb) Tomas Bjerre *2017-02-28 16:03:53*
+[f7136e9467b7fb6](https://github.com/tomasbjerre/java-method-invocation-builder/commit/f7136e9467b7fb6) Tomas Bjerre *2017-02-28 16:04:35*
 
 
 ## 1.3
-### No issue
+### GitHub [#1](https://github.com/tomasbjerre/java-method-invocation-builder/issues/1) Suggestion on builder
 
-**Adding BuilderStyle option #1**
+**Adding BuilderStyle option**
 
 
 [24d4295efbac8a9](https://github.com/tomasbjerre/java-method-invocation-builder/commit/24d4295efbac8a9) Tomas Bjerre *2017-02-28 15:58:35*
+
+
+### No issue
 
 **Set theme jekyll-theme-slate**
 
@@ -62,15 +72,6 @@
  * Moving annotations to its own artifact. 
 
 [3ece1890042e233](https://github.com/tomasbjerre/java-method-invocation-builder/commit/3ece1890042e233) Tomas Bjerre *2016-07-17 10:05:38*
-
-
-## 1.0
-### No issue
-
-**Initial**
-
-
-[3f41a305e30ca5c](https://github.com/tomasbjerre/java-method-invocation-builder/commit/3f41a305e30ca5c) Tomas Bjerre *2016-06-11 15:55:12*
 
 
  

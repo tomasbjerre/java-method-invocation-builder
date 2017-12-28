@@ -144,9 +144,3 @@ BitBucketServerServicePullRequestsBuilder.pullRequests()
  .withAt("25")
  .invoke(bitBucketServerService);
 ```
-
-## Developer instructions
-
-To build the code, have a look at `.travis.yml`.
-
-To do a release you need to do `./gradlew release` and release the artifact from [staging](https://oss.sonatype.org/#stagingRepositories). More information [here](http://central.sonatype.org/pages/releasing-the-deployment.html).

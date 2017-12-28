@@ -1,6 +1,7 @@
 package se.bjurr.jmib.processor;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Locale.US;
 import static java.util.logging.Level.SEVERE;
 import static javax.lang.model.element.ElementKind.METHOD;
 import static javax.lang.model.element.Modifier.PRIVATE;
@@ -46,27 +47,27 @@ public class ElementHandler {
 
   public void handle(TypeElement classElement) throws IOException {
 
-    String packageName = getPackageName(classElement);
+    final String packageName = getPackageName(classElement);
 
-    String classFullyQualified = getClassFulltyQualified(classElement);
-    GenerateMethodInvocationBuilder generateMethodInvocationBuilder =
+    final String classFullyQualified = getClassFulltyQualified(classElement);
+    final GenerateMethodInvocationBuilder generateMethodInvocationBuilder =
         classElement.getAnnotation(GenerateMethodInvocationBuilder.class);
     BuilderStyle builderStyle = generateMethodInvocationBuilder.style();
     if (builderStyle == null) {
       builderStyle = SUPPLY_INSTANCE_AS_INVOKE_PARAMETER;
     }
 
-    List<ClassMethod> methods = findMethods(classElement);
+    final List<ClassMethod> methods = findMethods(classElement);
 
-    ClassModel classModel = new ClassModel(packageName, classFullyQualified, methods);
+    final ClassModel classModel = new ClassModel(packageName, classFullyQualified, methods);
 
     writeResults(classElement, classModel, builderStyle);
   }
 
   private List<ClassMethod> findMethods(TypeElement classElement) {
-    List<ClassMethod> methods = newArrayList();
-    List<? extends Element> allMembers = this.elementUtils.getAllMembers(classElement);
-    for (Element member : allMembers) {
+    final List<ClassMethod> methods = newArrayList();
+    final List<? extends Element> allMembers = this.elementUtils.getAllMembers(classElement);
+    for (final Element member : allMembers) {
       if (member.getKind() == METHOD && !member.getModifiers().contains(PRIVATE)) {
         if (!objectHasMethod(member.getSimpleName().toString())) {
           methods.add(handle((ExecutableElement) member));
@@ -81,7 +82,7 @@ public class ElementHandler {
   }
 
   private Optional<String> getDefaultValue(VariableElement parameter) {
-    Default defaultAnnotation = parameter.getAnnotation(Default.class);
+    final Default defaultAnnotation = parameter.getAnnotation(Default.class);
     if (defaultAnnotation == null) {
       return Optional.absent();
     }
@@ -93,26 +94,26 @@ public class ElementHandler {
   }
 
   private String getPackageName(Element element) {
-    PackageElement packageElement = this.elementUtils.getPackageOf(element);
+    final PackageElement packageElement = this.elementUtils.getPackageOf(element);
     return packageElement.getQualifiedName().toString();
   }
 
   private ClassMethod handle(ExecutableElement member) {
-    List<ClassMethodParameter> parameters = newArrayList();
-    TypeMirror returnType = member.getReturnType();
-    String methodName = member.getSimpleName().toString();
-    for (VariableElement parameter : member.getParameters()) {
-      TypeMirror type = parameter.asType();
-      String name = parameter.getSimpleName().toString();
-      Optional<String> defaultValue = getDefaultValue(parameter);
+    final List<ClassMethodParameter> parameters = newArrayList();
+    final TypeMirror returnType = member.getReturnType();
+    final String methodName = member.getSimpleName().toString();
+    for (final VariableElement parameter : member.getParameters()) {
+      final TypeMirror type = parameter.asType();
+      final String name = parameter.getSimpleName().toString();
+      final Optional<String> defaultValue = getDefaultValue(parameter);
       parameters.add(new ClassMethodParameter(type, name, defaultValue.orNull()));
     }
     return new ClassMethod(methodName, returnType, parameters);
   }
 
   private boolean objectHasMethod(String name) {
-    Method[] objectMethods = Object.class.getDeclaredMethods();
-    for (Method m : objectMethods) {
+    final Method[] objectMethods = Object.class.getDeclaredMethods();
+    for (final Method m : objectMethods) {
       if (m.getName().equals(name)) {
         return true;
       }
@@ -121,18 +122,19 @@ public class ElementHandler {
   }
 
   private String ucFirst(String s) {
-    return s.substring(0, 1).toUpperCase() + s.substring(1);
+    return s.substring(0, 1).toUpperCase(US) + s.substring(1);
   }
 
   private void writeResults(
       TypeElement classElement, ClassModel classModel, BuilderStyle builderStyle)
       throws IOException {
-    for (ClassMethod classMethod : classModel.getMethods()) {
-      String classSuffix = ucFirst(classMethod.getName()) + "Builder";
-      String newClassName = classModel.getClassFullyQualifiedName() + classSuffix;
-      JavaFileObject newJavaFileObject = this.filer.createSourceFile(newClassName, classElement);
-      Writer writer = newJavaFileObject.openWriter();
-      JavaFile javaFile =
+    for (final ClassMethod classMethod : classModel.getMethods()) {
+      final String classSuffix = ucFirst(classMethod.getName()) + "Builder";
+      final String newClassName = classModel.getClassFullyQualifiedName() + classSuffix;
+      final JavaFileObject newJavaFileObject =
+          this.filer.createSourceFile(newClassName, classElement);
+      final Writer writer = newJavaFileObject.openWriter();
+      final JavaFile javaFile =
           new CodeGenerator()
               .generateJavaFile(
                   classModel.getPackageName(),
@@ -142,7 +144,7 @@ public class ElementHandler {
                   builderStyle);
       try {
         javaFile.writeTo(writer);
-      } catch (Exception e) {
+      } catch (final Exception e) {
         Logger.getLogger(this.getClass().getSimpleName()).log(SEVERE, e.getMessage(), e);
       } finally {
         writer.close();

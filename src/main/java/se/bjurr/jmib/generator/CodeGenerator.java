@@ -7,6 +7,7 @@ import static com.squareup.javapoet.MethodSpec.methodBuilder;
 import static com.squareup.javapoet.ParameterSpec.builder;
 import static com.squareup.javapoet.TypeName.VOID;
 import static com.squareup.javapoet.TypeSpec.classBuilder;
+import static java.util.Locale.US;
 import static javax.lang.model.element.Modifier.FINAL;
 import static javax.lang.model.element.Modifier.PRIVATE;
 import static javax.lang.model.element.Modifier.PUBLIC;
@@ -36,22 +37,22 @@ public class CodeGenerator {
       ClassMethod classMethod,
       BuilderStyle builderStyle) {
 
-    ClassName instanceClassName = ClassName.get(packageName, classToInvoke);
-    ParameterSpec instanceParameter =
+    final ClassName instanceClassName = ClassName.get(packageName, classToInvoke);
+    final ParameterSpec instanceParameter =
         builder(instanceClassName, "instance", FINAL) //
             .build();
 
-    MethodSpec.Builder constructor = getConstructor(builderStyle, instanceParameter);
+    final MethodSpec.Builder constructor = getConstructor(builderStyle, instanceParameter);
     setDefaltParameters(classMethod.getParameters(), constructor);
 
-    Builder javaFile =
+    final Builder javaFile =
         classBuilder(newClassName) //
             .addModifiers(PUBLIC, FINAL) //
             .addMethod(
                 constructor //
                     .build());
 
-    ClassName self = ClassName.get(packageName, newClassName);
+    final ClassName self = ClassName.get(packageName, newClassName);
     addParameters(classMethod, javaFile, self);
 
     if (builderStyle == SUPPLY_INSTANCE_WITH_ON_METHOD
@@ -63,14 +64,14 @@ public class CodeGenerator {
       addOnMethod(instanceParameter, javaFile, self);
     }
 
-    Iterable<MethodSpec> invokeMethodSpec =
+    final Iterable<MethodSpec> invokeMethodSpec =
         getInvokeMethod(packageName, classToInvoke, classMethod, builderStyle);
 
-    MethodSpec staticConstructorMethod =
+    final MethodSpec staticConstructorMethod =
         getStaticConstructorMethod(
             newClassName, classMethod, self, builderStyle, instanceParameter);
 
-    TypeSpec typeSpec =
+    final TypeSpec typeSpec =
         javaFile //
             .addMethod(staticConstructorMethod) //
             .addMethods(invokeMethodSpec) //
@@ -102,7 +103,7 @@ public class CodeGenerator {
   }
 
   private void addOnMethod(ParameterSpec instanceParameter, Builder javaFile, ClassName self) {
-    MethodSpec onMethod =
+    final MethodSpec onMethod =
         methodBuilder("on") //
             .addModifiers(PUBLIC) //
             .addParameter(instanceParameter) //
@@ -114,9 +115,9 @@ public class CodeGenerator {
   }
 
   private void addParameters(ClassMethod classMethod, Builder javaFile, ClassName self) {
-    for (ClassMethodParameter classMethodParameter : classMethod.getParameters()) {
-      TypeName fieldType = TypeName.get(classMethodParameter.getType());
-      String fieldName = classMethodParameter.getName();
+    for (final ClassMethodParameter classMethodParameter : classMethod.getParameters()) {
+      final TypeName fieldType = TypeName.get(classMethodParameter.getType());
+      final String fieldName = classMethodParameter.getName();
       javaFile //
           .addField(fieldType, fieldName, PRIVATE) //
           .addMethod(
@@ -134,7 +135,7 @@ public class CodeGenerator {
 
   private void setDefaltParameters(
       List<ClassMethodParameter> classMethodParameters, MethodSpec.Builder constructor) {
-    for (ClassMethodParameter classMethodParameter : classMethodParameters) {
+    for (final ClassMethodParameter classMethodParameter : classMethodParameters) {
       if (classMethodParameter.getDefaultValue().isPresent()) {
         constructor //
             .addStatement(
@@ -167,10 +168,10 @@ public class CodeGenerator {
       String classToInvoke,
       ClassMethod classMethod,
       BuilderStyle builderStyle) {
-    TypeName returns = TypeName.get(classMethod.getReturnType());
-    boolean shouldReturn = !returns.equals(VOID);
+    final TypeName returns = TypeName.get(classMethod.getReturnType());
+    final boolean shouldReturn = !returns.equals(VOID);
 
-    String callStatementArguments =
+    final String callStatementArguments =
         classMethod.getName() + "(" + parameters(classMethod.getParameters()) + ")";
     String callStatementParameter = "instance." + callStatementArguments;
     String callStatementAttribute = "this.instance." + callStatementArguments;
@@ -179,7 +180,7 @@ public class CodeGenerator {
       callStatementAttribute = "return " + callStatementAttribute;
     }
 
-    List<MethodSpec> methods = newArrayList();
+    final List<MethodSpec> methods = newArrayList();
     if (builderStyle == SUPPLY_INSTANCE_WITH_ON_METHOD
         || builderStyle == SUPPLY_INSTANCE_IN_CONSTRUCTOR) {
       methods.add(
@@ -212,8 +213,8 @@ public class CodeGenerator {
   }
 
   private String parameters(List<ClassMethodParameter> parameters) {
-    StringBuilder sb = new StringBuilder();
-    for (ClassMethodParameter p : parameters) {
+    final StringBuilder sb = new StringBuilder();
+    for (final ClassMethodParameter p : parameters) {
       if (parameters.indexOf(p) == 0) {
         sb.append(p.getName());
       } else {
@@ -224,6 +225,6 @@ public class CodeGenerator {
   }
 
   private String ucFirst(String s) {
-    return s.substring(0, 1).toUpperCase() + s.substring(1);
+    return s.substring(0, 1).toUpperCase(US) + s.substring(1);
   }
 }
