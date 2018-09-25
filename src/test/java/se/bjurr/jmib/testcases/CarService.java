@@ -12,10 +12,8 @@ public class CarService {
   public String getCarsByFilter( //
       @Default("Color.BLUE") Color color, //
       @Default("new ProductionYear(2001)") ProductionYear productionYear, //
-      @Default("Tomas")
-          String
-              owner //
-                  ) {
+      @Default("Tomas") String owner //
+      ) {
     return "Filtering... " + color + productionYear + owner;
   }
 }

@@ -9,7 +9,7 @@ Changelog of Java method invocation builder.
 **Cleaning build scripts**
 
 
-[ee609f0ec66def6](https://github.com/tomasbjerre/java-method-invocation-builder/commit/ee609f0ec66def6) Tomas Bjerre *2017-12-28 08:03:15*
+[fd3525d7eeed174](https://github.com/tomasbjerre/java-method-invocation-builder/commit/fd3525d7eeed174) Tomas Bjerre *2018-01-16 18:37:56*
 
 **doc**
 
