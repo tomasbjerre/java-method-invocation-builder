@@ -6,6 +6,21 @@ Changelog of Java method invocation builder.
 ## Unreleased
 ### No issue
 
+**new gradle**
+
+
+[8986aae4dead800](https://github.com/tomasbjerre/java-method-invocation-builder/commit/8986aae4dead800) Tomas Bjerre *2020-05-12 13:57:09*
+
+**Create FUNDING.yml**
+
+
+[eb435ebd5c66eb0](https://github.com/tomasbjerre/java-method-invocation-builder/commit/eb435ebd5c66eb0) Tomas Bjerre *2019-09-28 07:10:44*
+
+**Format**
+
+
+[50db291b5f1ecec](https://github.com/tomasbjerre/java-method-invocation-builder/commit/50db291b5f1ecec) Tomas Bjerre *2018-09-25 08:39:26*
+
 **Cleaning build scripts**
 
 
@@ -18,7 +33,7 @@ Changelog of Java method invocation builder.
 
 
 ## 1.3
-### GitHub [#1](https://github.com/tomasbjerre/java-method-invocation-builder/issues/1) Suggestion on builder
+### GitHub [#1](https://github.com/tomasbjerre/java-method-invocation-builder/issues/1) Suggestion on builder    *enhancement*  
 
 **Adding BuilderStyle option**
 
