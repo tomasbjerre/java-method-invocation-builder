@@ -31,6 +31,7 @@ import se.bjurr.jmib.anotations.GenerateMethodInvocationBuilder;
 import se.bjurr.jmib.generator.CodeGenerator;
 import se.bjurr.jmib.model.ClassMethod;
 import se.bjurr.jmib.model.ClassMethodParameter;
+import se.bjurr.jmib.model.ClassMethodTypeParameterList;
 import se.bjurr.jmib.model.ClassModel;
 
 public class ElementHandler {
@@ -49,7 +50,7 @@ public class ElementHandler {
 
     final String packageName = getPackageName(classElement);
 
-    final String classFullyQualified = getClassFulltyQualified(classElement);
+    final String classFullyQualified = getClassFullyQualified(classElement);
     final GenerateMethodInvocationBuilder generateMethodInvocationBuilder =
         classElement.getAnnotation(GenerateMethodInvocationBuilder.class);
     BuilderStyle builderStyle = generateMethodInvocationBuilder.style();
@@ -77,7 +78,7 @@ public class ElementHandler {
     return methods;
   }
 
-  private String getClassFulltyQualified(TypeElement classElement) {
+  private String getClassFullyQualified(TypeElement classElement) {
     return classElement.getQualifiedName().toString();
   }
 
@@ -99,6 +100,7 @@ public class ElementHandler {
   }
 
   private ClassMethod handle(ExecutableElement member) {
+    final ClassMethodTypeParameterList typeParameters = ClassMethodTypeParameterList.newInstance(member.getTypeParameters());
     final List<ClassMethodParameter> parameters = newArrayList();
     final TypeMirror returnType = member.getReturnType();
     final String methodName = member.getSimpleName().toString();
@@ -108,7 +110,7 @@ public class ElementHandler {
       final Optional<String> defaultValue = getDefaultValue(parameter);
       parameters.add(new ClassMethodParameter(type, name, defaultValue.orNull()));
     }
-    return new ClassMethod(methodName, returnType, parameters);
+    return new ClassMethod(methodName, returnType, parameters, typeParameters);
   }
 
   private boolean objectHasMethod(String name) {
@@ -129,8 +131,8 @@ public class ElementHandler {
       TypeElement classElement, ClassModel classModel, BuilderStyle builderStyle)
       throws IOException {
     for (final ClassMethod classMethod : classModel.getMethods()) {
-      final String classSuffix = ucFirst(classMethod.getName()) + "Builder";
-      final String newClassName = classModel.getClassFullyQualifiedName() + classSuffix;
+      final String classNameSuffix = ucFirst(classMethod.getName()) + "Builder";
+      final String newClassName = classModel.getClassFullyQualifiedName() + classNameSuffix;
       final JavaFileObject newJavaFileObject =
           this.filer.createSourceFile(newClassName, classElement);
       final Writer writer = newJavaFileObject.openWriter();
@@ -139,7 +141,7 @@ public class ElementHandler {
               .generateJavaFile(
                   classModel.getPackageName(),
                   classModel.getClassName(),
-                  classModel.getClassName() + classSuffix,
+                  classModel.getClassName() + classNameSuffix,
                   classMethod,
                   builderStyle);
       try {

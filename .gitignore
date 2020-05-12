@@ -13,3 +13,6 @@ temp
 .gradle
 *.class
 .okhttpcache
+.idea
+local.properties
+java-method-invocation-builder.iml

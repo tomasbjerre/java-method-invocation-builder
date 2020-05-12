@@ -20,6 +20,7 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
+import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeSpec.Builder;
@@ -48,11 +49,19 @@ public class CodeGenerator {
     final Builder javaFile =
         classBuilder(newClassName) //
             .addModifiers(PUBLIC, FINAL) //
+            .addTypeVariables(classMethod.getTypeParameters().toTypeVariableNameList())
             .addMethod(
                 constructor //
                     .build());
 
-    final ClassName self = ClassName.get(packageName, newClassName);
+    final ClassName selfWithoutGenericTypeArguments=ClassName.get(packageName, newClassName);
+
+    final TypeName self;
+    if (classMethod.getTypeParameters().isEmpty())
+      self=selfWithoutGenericTypeArguments;
+    else self=ParameterizedTypeName.get(selfWithoutGenericTypeArguments,
+            classMethod.getTypeParameters().toTypeNameArray());
+
     addParameters(classMethod, javaFile, self);
 
     if (builderStyle == SUPPLY_INSTANCE_WITH_ON_METHOD
@@ -84,25 +93,32 @@ public class CodeGenerator {
   private MethodSpec getStaticConstructorMethod(
       String newClassName,
       ClassMethod classMethod,
-      ClassName self,
+      TypeName self,
       BuilderStyle builderStyle,
       ParameterSpec instanceParameter) {
+    final String instantiation=
+      classMethod.getTypeParameters().isEmpty()
+        ?"new "+newClassName
+        :"new "+newClassName+"<>";
+
     if (builderStyle == SUPPLY_INSTANCE_IN_CONSTRUCTOR) {
       return methodBuilder(classMethod.getName()) //
           .addModifiers(PUBLIC, STATIC) //
+          .addTypeVariables(classMethod.getTypeParameters().toTypeVariableNameList())
           .addParameter(instanceParameter) //
-          .addStatement("return new " + newClassName + "(instance)") //
+          .addStatement("return " + instantiation + "(instance)") //
           .returns(self) //
           .build();
     }
     return methodBuilder(classMethod.getName()) //
         .addModifiers(PUBLIC, STATIC) //
-        .addStatement("return new " + newClassName + "()") //
+        .addTypeVariables(classMethod.getTypeParameters().toTypeVariableNameList())
+        .addStatement("return " + instantiation + "()") //
         .returns(self) //
         .build();
   }
 
-  private void addOnMethod(ParameterSpec instanceParameter, Builder javaFile, ClassName self) {
+  private void addOnMethod(ParameterSpec instanceParameter, Builder javaFile, TypeName self) {
     final MethodSpec onMethod =
         methodBuilder("on") //
             .addModifiers(PUBLIC) //
@@ -114,7 +130,7 @@ public class CodeGenerator {
     javaFile.addMethod(onMethod);
   }
 
-  private void addParameters(ClassMethod classMethod, Builder javaFile, ClassName self) {
+  private void addParameters(ClassMethod classMethod, Builder javaFile, TypeName self) {
     for (final ClassMethodParameter classMethodParameter : classMethod.getParameters()) {
       final TypeName fieldType = TypeName.get(classMethodParameter.getType());
       final String fieldName = classMethodParameter.getName();
