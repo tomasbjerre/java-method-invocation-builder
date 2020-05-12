@@ -3,8 +3,13 @@
 
 Changelog of Java method invocation builder.
 
-## Unreleased
+## 1.4
 ### No issue
+
+**Updating changelog and reformat**
+
+
+[90c5b78b1a4de26](https://github.com/tomasbjerre/java-method-invocation-builder/commit/90c5b78b1a4de26) Tomas Bjerre *2020-05-12 17:08:53*
 
 **added support for generics on methods**
 
