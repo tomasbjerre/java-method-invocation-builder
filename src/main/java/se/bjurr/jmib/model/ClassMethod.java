@@ -10,7 +10,11 @@ public class ClassMethod {
   private final TypeMirror returnType;
   private final ClassMethodTypeParameterList typeParameters;
 
-  public ClassMethod(String name, TypeMirror returnType, List<ClassMethodParameter> parameters, ClassMethodTypeParameterList typeParameters) {
+  public ClassMethod(
+      String name,
+      TypeMirror returnType,
+      List<ClassMethodParameter> parameters,
+      ClassMethodTypeParameterList typeParameters) {
     this.name = name;
     this.returnType = returnType;
     this.parameters = parameters;

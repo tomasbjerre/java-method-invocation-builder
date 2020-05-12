@@ -45,7 +45,7 @@ public class AClass {
     System.out.println("Called methodWithBoundedGenericType!");
   }
 
-  public <T extends Serializable&Comparable> void methodWithDoublyBoundedGenericType(T argument) {
+  public <T extends Serializable & Comparable> void methodWithDoublyBoundedGenericType(T argument) {
     System.out.println("Called methodWithBoundedGenericType!");
   }
 }

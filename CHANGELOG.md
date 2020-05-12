@@ -6,10 +6,15 @@ Changelog of Java method invocation builder.
 ## Unreleased
 ### No issue
 
+**added support for generics on methods**
+
+
+[e0fa908d59368b3](https://github.com/tomasbjerre/java-method-invocation-builder/commit/e0fa908d59368b3) Andrei Dobrescu *2020-05-12 16:59:07*
+
 **new gradle**
 
 
-[8986aae4dead800](https://github.com/tomasbjerre/java-method-invocation-builder/commit/8986aae4dead800) Tomas Bjerre *2020-05-12 13:57:09*
+[3c4174b4008e170](https://github.com/tomasbjerre/java-method-invocation-builder/commit/3c4174b4008e170) Tomas Bjerre *2020-05-12 13:59:39*
 
 **Create FUNDING.yml**
 

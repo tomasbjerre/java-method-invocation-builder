@@ -100,7 +100,8 @@ public class ElementHandler {
   }
 
   private ClassMethod handle(ExecutableElement member) {
-    final ClassMethodTypeParameterList typeParameters = ClassMethodTypeParameterList.newInstance(member.getTypeParameters());
+    final ClassMethodTypeParameterList typeParameters =
+        ClassMethodTypeParameterList.newInstance(member.getTypeParameters());
     final List<ClassMethodParameter> parameters = newArrayList();
     final TypeMirror returnType = member.getReturnType();
     final String methodName = member.getSimpleName().toString();

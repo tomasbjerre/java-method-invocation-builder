@@ -54,13 +54,14 @@ public class CodeGenerator {
                 constructor //
                     .build());
 
-    final ClassName selfWithoutGenericTypeArguments=ClassName.get(packageName, newClassName);
+    final ClassName selfWithoutGenericTypeArguments = ClassName.get(packageName, newClassName);
 
     final TypeName self;
-    if (classMethod.getTypeParameters().isEmpty())
-      self=selfWithoutGenericTypeArguments;
-    else self=ParameterizedTypeName.get(selfWithoutGenericTypeArguments,
-            classMethod.getTypeParameters().toTypeNameArray());
+    if (classMethod.getTypeParameters().isEmpty()) self = selfWithoutGenericTypeArguments;
+    else
+      self =
+          ParameterizedTypeName.get(
+              selfWithoutGenericTypeArguments, classMethod.getTypeParameters().toTypeNameArray());
 
     addParameters(classMethod, javaFile, self);
 
@@ -96,10 +97,10 @@ public class CodeGenerator {
       TypeName self,
       BuilderStyle builderStyle,
       ParameterSpec instanceParameter) {
-    final String instantiation=
-      classMethod.getTypeParameters().isEmpty()
-        ?"new "+newClassName
-        :"new "+newClassName+"<>";
+    final String instantiation =
+        classMethod.getTypeParameters().isEmpty()
+            ? "new " + newClassName
+            : "new " + newClassName + "<>";
 
     if (builderStyle == SUPPLY_INSTANCE_IN_CONSTRUCTOR) {
       return methodBuilder(classMethod.getName()) //
