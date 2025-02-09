@@ -1,6 +1,5 @@
 package se.bjurr.jmib.generator;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static com.squareup.javapoet.JavaFile.builder;
 import static com.squareup.javapoet.MethodSpec.constructorBuilder;
 import static com.squareup.javapoet.MethodSpec.methodBuilder;
@@ -24,6 +23,7 @@ import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeSpec.Builder;
+import java.util.ArrayList;
 import java.util.List;
 import se.bjurr.jmib.anotations.BuilderStyle;
 import se.bjurr.jmib.model.ClassMethod;
@@ -197,7 +197,7 @@ public class CodeGenerator {
       callStatementAttribute = "return " + callStatementAttribute;
     }
 
-    final List<MethodSpec> methods = newArrayList();
+    final List<MethodSpec> methods = new ArrayList<>();
     if (builderStyle == SUPPLY_INSTANCE_WITH_ON_METHOD
         || builderStyle == SUPPLY_INSTANCE_IN_CONSTRUCTOR) {
       methods.add(

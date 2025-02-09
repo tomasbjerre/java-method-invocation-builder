@@ -14,7 +14,8 @@ public final class AClassMethodWithDoublyBoundedGenericTypeBuilder<T extends Ser
     return this;
   }
 
-  public static <T extends Serializable & Comparable> AClassMethodWithDoublyBoundedGenericTypeBuilder<T> methodWithDoublyBoundedGenericType() {
+  public static <T extends Serializable & Comparable> AClassMethodWithDoublyBoundedGenericTypeBuilder<T> methodWithDoublyBoundedGenericType(
+      ) {
     return new AClassMethodWithDoublyBoundedGenericTypeBuilder<>();
   }
 

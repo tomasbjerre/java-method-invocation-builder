@@ -1,8 +1,8 @@
 package se.bjurr.jmib.processor;
 
-import static com.google.common.collect.Sets.newHashSet;
 import static java.util.logging.Level.SEVERE;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
 import javax.annotation.processing.AbstractProcessor;
@@ -19,8 +19,9 @@ public class AnnotationProcessor extends AbstractProcessor {
 
   @Override
   public Set<String> getSupportedAnnotationTypes() {
-    return newHashSet( //
-        GenerateMethodInvocationBuilder.class.getName());
+    Set<String> set = new HashSet<>();
+    set.add(GenerateMethodInvocationBuilder.class.getName());
+    return set;
   }
 
   @Override

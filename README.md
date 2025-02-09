@@ -1,10 +1,12 @@
-# Java Method Invocation Builder [![Build Status](https://travis-ci.org/tomasbjerre/java-method-invocation-builder.svg?branch=master)](https://travis-ci.org/tomasbjerre/java-method-invocation-builder) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/se.bjurr.jmib/java-method-invocation-builder/badge.svg)](https://maven-badges.herokuapp.com/maven-central/se.bjurr.jmib/java-method-invocation-builder)
+# Java Method Invocation Builder
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/se.bjurr.jmib/java-method-invocation-builder/badge.svg)](https://maven-badges.herokuapp.com/maven-central/se.bjurr.jmib/java-method-invocation-builder)
 
 This is a Java library that enables automatic generation of builders at compile time. Builders used for invoking methods on instantiated objects. It enables default values of method parameters and is making the invocations readable.
 
-It does not solve the same problem as [Immutables](https://immutables.github.io/) or [POJOBuilder](https://github.com/mkarneim/pojobuilder). They are generating builders for creating instances of types. This is about invoking methods on previously instantiated types.
+It does not solve the same problem as [Immutables](https://immutables.github.io/), [POJOBuilder](https://github.com/mkarneim/pojobuilder) or [Lombok](https://projectlombok.org/). They are generating builders for creating instances of types. This is about invoking methods on previously instantiated types.
 
-Sometimes you are forced to invoke methods that take alot of parameters. This makes the invoking code dirty and hard to read. The problem may be solved with a builder. The builder can have default values for each parameter and when you want to call the method, you just supply the parameters you want to change. This library automates the creation of such builders.
+Sometimes you are forced to invoke methods that take a lot of parameters. This makes the invoking code dirty and hard to read. The problem may be solved with a builder. The builder can have default values for each parameter and when you want to call the method, you just supply the parameters you want to change. This library automates the creation of such builders.
 
 There is a Gradle example [here](https://github.com/tomasbjerre/java-method-invocation-builder/tree/master/example-gradle).
 

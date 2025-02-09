@@ -19,7 +19,8 @@ public final class ClassWithConstructorGetAgeAfterBuilder {
     return this;
   }
 
-  public static ClassWithConstructorGetAgeAfterBuilder getAgeAfter(final ClassWithConstructor instance) {
+  public static ClassWithConstructorGetAgeAfterBuilder getAgeAfter(
+      final ClassWithConstructor instance) {
     return new ClassWithConstructorGetAgeAfterBuilder(instance);
   }
 

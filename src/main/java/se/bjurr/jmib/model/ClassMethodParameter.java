@@ -1,6 +1,6 @@
 package se.bjurr.jmib.model;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import javax.lang.model.type.TypeMirror;
 
 public class ClassMethodParameter {
@@ -16,7 +16,7 @@ public class ClassMethodParameter {
   }
 
   public Optional<String> getDefaultValue() {
-    return Optional.fromNullable(this.defaultValue);
+    return Optional.ofNullable(this.defaultValue);
   }
 
   public String getName() {

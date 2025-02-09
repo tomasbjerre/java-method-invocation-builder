@@ -1,14 +1,15 @@
 package se.bjurr.jmib.test;
 
-import static com.google.common.base.Joiner.on;
-import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.tools.DiagnosticCollector;
 import javax.tools.JavaCompiler;
 import javax.tools.JavaCompiler.CompilationTask;
@@ -27,13 +28,13 @@ public abstract class AnnotationProcessingTestUtil {
 
     StandardJavaFileManager fileManager = compiler.getStandardFileManager(diagnostics, null, null);
 
-    List<String> classnamesForProcessing = newArrayList();
+    List<String> classnamesForProcessing = new ArrayList<>();
     for (Class<?> classToTest : classesToProcess) {
       classnamesForProcessing.add(classToTest.getName());
     }
 
     List<String> optionList =
-        newArrayList( //
+        Arrays.asList( //
             "-processor",
             AnnotationProcessor.class.getName() //
             ,
@@ -52,7 +53,12 @@ public abstract class AnnotationProcessingTestUtil {
             writer, fileManager, diagnostics, optionList, classnamesForProcessing, toCompile);
 
     assertThat(task.call()) //
-        .as(writer.toString() + '\n' + on('\n').join(diagnostics.getDiagnostics())) //
+        .as(
+            writer.toString()
+                + '\n'
+                + diagnostics.getDiagnostics().stream()
+                    .map(it -> it.toString())
+                    .collect(Collectors.joining("\n"))) //
         .isTrue();
 
     fileManager.close();

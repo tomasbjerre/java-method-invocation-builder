@@ -16,3 +16,4 @@ temp
 .idea
 local.properties
 java-method-invocation-builder.iml
+*.versionsBackup

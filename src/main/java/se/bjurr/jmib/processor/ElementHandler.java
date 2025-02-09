@@ -1,18 +1,18 @@
 package se.bjurr.jmib.processor;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Locale.US;
 import static java.util.logging.Level.SEVERE;
 import static javax.lang.model.element.ElementKind.METHOD;
 import static javax.lang.model.element.Modifier.PRIVATE;
 import static se.bjurr.jmib.anotations.BuilderStyle.SUPPLY_INSTANCE_AS_INVOKE_PARAMETER;
 
-import com.google.common.base.Optional;
 import com.squareup.javapoet.JavaFile;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
@@ -66,7 +66,7 @@ public class ElementHandler {
   }
 
   private List<ClassMethod> findMethods(TypeElement classElement) {
-    final List<ClassMethod> methods = newArrayList();
+    final List<ClassMethod> methods = new ArrayList<>();
     final List<? extends Element> allMembers = this.elementUtils.getAllMembers(classElement);
     for (final Element member : allMembers) {
       if (member.getKind() == METHOD && !member.getModifiers().contains(PRIVATE)) {
@@ -85,7 +85,7 @@ public class ElementHandler {
   private Optional<String> getDefaultValue(VariableElement parameter) {
     final Default defaultAnnotation = parameter.getAnnotation(Default.class);
     if (defaultAnnotation == null) {
-      return Optional.absent();
+      return Optional.empty();
     }
     String defaultValue = defaultAnnotation.value();
     if (parameter.asType().toString().equals(String.class.getName())) {
@@ -102,14 +102,14 @@ public class ElementHandler {
   private ClassMethod handle(ExecutableElement member) {
     final ClassMethodTypeParameterList typeParameters =
         ClassMethodTypeParameterList.newInstance(member.getTypeParameters());
-    final List<ClassMethodParameter> parameters = newArrayList();
+    final List<ClassMethodParameter> parameters = new ArrayList<>();
     final TypeMirror returnType = member.getReturnType();
     final String methodName = member.getSimpleName().toString();
     for (final VariableElement parameter : member.getParameters()) {
       final TypeMirror type = parameter.asType();
       final String name = parameter.getSimpleName().toString();
       final Optional<String> defaultValue = getDefaultValue(parameter);
-      parameters.add(new ClassMethodParameter(type, name, defaultValue.orNull()));
+      parameters.add(new ClassMethodParameter(type, name, defaultValue.orElse(null)));
     }
     return new ClassMethod(methodName, returnType, parameters, typeParameters);
   }

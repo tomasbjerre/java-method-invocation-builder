@@ -13,7 +13,8 @@ public final class AClassMethodWithBoundedGenericTypeBuilder<T extends Point2D> 
     return this;
   }
 
-  public static <T extends Point2D> AClassMethodWithBoundedGenericTypeBuilder<T> methodWithBoundedGenericType() {
+  public static <T extends Point2D> AClassMethodWithBoundedGenericTypeBuilder<T> methodWithBoundedGenericType(
+      ) {
     return new AClassMethodWithBoundedGenericTypeBuilder<>();
   }
 

@@ -1,33 +1,21 @@
-
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'eclipse'
+plugins {
+    id "java-library"
+	id "se.bjurr.gradle.update-versions"
+}
 
 group = 'se.bjurr.jmib'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
  mavenLocal()
  mavenCentral()
 }
 
-configurations {
- provided
- compile.extendsFrom provided
-}
-
 dependencies {
- compile 'se.bjurr.jmib:java-method-invocation-builder-annotations:1.4'
- provided 'se.bjurr.jmib:java-method-invocation-builder:1.4-SNAPSHOT'
-}
-
-eclipse {
- classpath {
-  downloadSources = true
-  downloadJavadoc = true
- }
+ compileOnly 'se.bjurr.jmib:java-method-invocation-builder-annotations:1.4.2'
+ annotationProcessor 'se.bjurr.jmib:java-method-invocation-builder:1.4.1'
 }
 
 sourceSets {
@@ -35,31 +23,3 @@ sourceSets {
                      ,'src/generated/java' ]
  test.java.srcDirs = ['src/test/java' ]
 }
-
-if (JavaVersion.current().isJava8Compatible()) {
- allprojects {
-  tasks.withType(Javadoc) {
-   options.addStringOption('Xdoclint:none', '-quiet')
-  }
- }
-}
-
-compileJava.doFirst {
- File generatedDir = file("${rootDir}/src/generated/java")
- if (generatedDir.exists()) {
-  delete generatedDir
- }
- generatedDir.mkdirs()
-}
-
-clean.doFirst {
- File generatedDir = file("${rootDir}/src/generated/java")
- if (generatedDir.exists()) {
-  delete generatedDir
- }
- generatedDir.mkdirs()
-}
-
-compileJava.options.compilerArgs += ['-s', 'src/generated/java'
-                                    ,'-parameters']
-

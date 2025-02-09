@@ -1,60 +1,43 @@
-apply plugin: 'java'
-
-project.ext.tags = ['clean-code']
-group = 'se.bjurr.jmib'
-description = 'Generates builders for invoking methods on instantiated objects'
-
-
-buildscript {
- repositories {
-  maven { url "https://jitpack.io" }
- }
- dependencies {
-  classpath 'com.github.tomasbjerre:gradle-scripts:master-SNAPSHOT'
- }
+plugins {
+	id "se.bjurr.gradle.conventional-release"
+	id "se.bjurr.gradle.java-convention"
+	id "se.bjurr.gradle.update-versions"
 }
-apply from: project.buildscript.classLoader.getResource('java.gradle').toURI()
-apply from: project.buildscript.classLoader.getResource('changelog.gradle').toURI()
-apply from: project.buildscript.classLoader.getResource('release.gradle').toURI()
-
 
 dependencies {
- compile 'com.google.guava:guava:16.0.1'
- compile 'com.squareup:javapoet:1.7.0'
- compile 'se.bjurr.jmib:java-method-invocation-builder-annotations:1.4'
+	implementation 'com.squareup:javapoet:1.13.0'
+	implementation 'se.bjurr.jmib:java-method-invocation-builder-annotations:1.4.2'
 
- testCompile 'junit:junit:4.12'
- testCompile 'org.assertj:assertj-core:2.3.0'
- testCompile 'org.mockito:mockito-all:1.8.5'
+	testImplementation 'junit:junit:4.13.2'
+	testImplementation 'org.assertj:assertj-core:3.27.3'
+	testImplementation 'org.mockito:mockito-all:1.10.19'
 }
 
 jar {
-  from 'src/jar/resources'
+	from 'src/jar/resources'
 }
 
 sourceSets {
- main.java.srcDirs = ['src/main/java' ]
- test.java.srcDirs = ['src/test/java'
-                     ,'src/test/generated' ]
-}
-
-googleJavaFormat {
-  exclude 'src/test/generated/*'
-  exclude 'src/test/expected/*'
+	main.java.srcDirs = ['src/main/java']
+	test.java.srcDirs = [
+		'src/test/java'
+		,
+		'src/test/generated'
+	]
 }
 
 compileJava.doFirst {
- File generatedDir = file("${rootDir}/src/test/generated")
- if (generatedDir.exists()) {
-  delete generatedDir
- }
- generatedDir.mkdirs()
+	File generatedDir = file("${rootDir}/src/test/generated")
+	if (generatedDir.exists()) {
+		delete generatedDir
+	}
+	generatedDir.mkdirs()
 }
 
 clean.doFirst {
- File generatedDir = file("${rootDir}/src/test/generated")
- if (generatedDir.exists()) {
-  delete generatedDir
- }
- generatedDir.mkdirs()
+	File generatedDir = file("${rootDir}/src/test/generated")
+	if (generatedDir.exists()) {
+		delete generatedDir
+	}
+	generatedDir.mkdirs()
 }
