@@ -1,3 +1,9 @@
+## 1.4.2 (2025-02-09)
+
+### Bug Fixes
+
+-  faulty properties file fixed ([2e954](https://github.com/tomasbjerre/java-method-invocation-builder/commit/2e9540c7035364f) Tomas Bjerre)  
+
 
  # Java method invocation builder changelog
 
