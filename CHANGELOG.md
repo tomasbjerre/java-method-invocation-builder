@@ -5,10 +5,6 @@
 -  faulty properties file fixed ([2e954](https://github.com/tomasbjerre/java-method-invocation-builder/commit/2e9540c7035364f) Tomas Bjerre)  
 
 
- # Java method invocation builder changelog
-
-Changelog of Java method invocation builder.
-
 ## 1.4
 ### No issue
 
