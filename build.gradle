@@ -1,7 +1,21 @@
 plugins {
-	id "se.bjurr.gradle.conventional-release"
-	id "se.bjurr.gradle.java-convention"
-	id "se.bjurr.gradle.update-versions"
+	id "se.bjurr.gradle.bundle-jar" version "1.3.10"
+}
+
+javaExtension {
+	javaVersion = 11
+}
+
+staticCodeAnalysisExtension {
+	maxViolations.set(6)
+}
+
+formatting {
+	formattingExcludedPatterns = [
+		"src/test/generated/**",
+		"src/test/expected/**",
+		"src/test/expected/**"
+	]
 }
 
 dependencies {
@@ -9,7 +23,7 @@ dependencies {
 	implementation 'se.bjurr.jmib:java-method-invocation-builder-annotations:1.4.2'
 
 	testImplementation 'junit:junit:4.13.2'
-	testImplementation 'org.assertj:assertj-core:3.27.3'
+	testImplementation "org.assertj:assertj-core:3.27.6"
 	testImplementation 'org.mockito:mockito-all:1.10.19'
 }
 
