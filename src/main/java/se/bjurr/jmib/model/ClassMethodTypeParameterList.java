@@ -8,7 +8,11 @@ import javax.lang.model.element.TypeParameterElement;
 
 public class ClassMethodTypeParameterList extends LinkedList<ClassMethodTypeParameter> {
 
-  private ClassMethodTypeParameterList() {}
+  private static final long serialVersionUID = 1L;
+
+  private ClassMethodTypeParameterList() {
+    super();
+  }
 
   public static ClassMethodTypeParameterList newInstance(
       List<? extends TypeParameterElement> typeParameterElements) {

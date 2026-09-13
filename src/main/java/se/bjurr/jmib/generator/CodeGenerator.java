@@ -57,11 +57,13 @@ public class CodeGenerator {
     final ClassName selfWithoutGenericTypeArguments = ClassName.get(packageName, newClassName);
 
     final TypeName self;
-    if (classMethod.getTypeParameters().isEmpty()) self = selfWithoutGenericTypeArguments;
-    else
+    if (classMethod.getTypeParameters().isEmpty()) {
+      self = selfWithoutGenericTypeArguments;
+    } else {
       self =
           ParameterizedTypeName.get(
               selfWithoutGenericTypeArguments, classMethod.getTypeParameters().toTypeNameArray());
+    }
 
     addParameters(classMethod, javaFile, self);
 

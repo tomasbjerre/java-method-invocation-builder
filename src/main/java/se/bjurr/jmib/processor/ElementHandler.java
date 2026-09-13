@@ -136,7 +136,6 @@ public class ElementHandler {
       final String newClassName = classModel.getClassFullyQualifiedName() + classNameSuffix;
       final JavaFileObject newJavaFileObject =
           this.filer.createSourceFile(newClassName, classElement);
-      final Writer writer = newJavaFileObject.openWriter();
       final JavaFile javaFile =
           new CodeGenerator()
               .generateJavaFile(
@@ -145,12 +144,10 @@ public class ElementHandler {
                   classModel.getClassName() + classNameSuffix,
                   classMethod,
                   builderStyle);
-      try {
+      try (Writer writer = newJavaFileObject.openWriter()) {
         javaFile.writeTo(writer);
       } catch (final Exception e) {
         Logger.getLogger(this.getClass().getSimpleName()).log(SEVERE, e.getMessage(), e);
-      } finally {
-        writer.close();
       }
       this.messager.printMessage(
           Diagnostic.Kind.NOTE, //

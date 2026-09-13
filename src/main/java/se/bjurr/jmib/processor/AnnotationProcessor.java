@@ -15,7 +15,9 @@ import se.bjurr.jmib.anotations.GenerateMethodInvocationBuilder;
 
 public class AnnotationProcessor extends AbstractProcessor {
 
-  public AnnotationProcessor() {}
+  public AnnotationProcessor() {
+    super();
+  }
 
   @Override
   public Set<String> getSupportedAnnotationTypes() {
