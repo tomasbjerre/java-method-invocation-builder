@@ -1,6 +1,6 @@
 # Java Method Invocation Builder
 
-[![Maven Central](https://img.shields.io/maven-central/v/se.bjurr.jmib/java-method-invocation-builder.svg?label=Maven%20Central)](https://search.maven.org/artifact/se.bjurr.jmib/java-method-invocation-builder)
+[![Maven Central](https://img.shields.io/maven-central/v/se.bjurr.jmib/java-method-invocation-builder.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/se.bjurr.jmib/java-method-invocation-builder)
 
 This is a Java library that enables automatic generation of builders at compile time. Builders used for invoking methods on instantiated objects. It enables default values of method parameters and is making the invocations readable.
 
