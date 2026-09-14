@@ -1,3 +1,35 @@
+## 2.0.0 (2026-09-14)
+
+### Breaking changes
+
+-  migrate from JUnit 4 to JUnit 6 ([01eb6](https://github.com/tomasbjerre/java-method-invocation-builder/commit/01eb616566af62d) Tomas Bjerre)  
+
+### Features
+
+-  **ci**  add draft/publish release workflow ([17596](https://github.com/tomasbjerre/java-method-invocation-builder/commit/17596ecfe528dca) Tomas Bjerre)  
+
+### Bug Fixes
+
+-  resolve PMD violations so maxViolations can be 0 ([4ca91](https://github.com/tomasbjerre/java-method-invocation-builder/commit/4ca91915bca6035) Tomas Bjerre)  
+
+### Dependency updates
+
+- annotations 1.5.0 ([a9e23](https://github.com/tomasbjerre/java-method-invocation-builder/commit/a9e234af20c1781) Tomas Bjerre)  
+- update gradle-conventions to 2.2.1 and gradle wrapper to 9.7.1 ([0fbf4](https://github.com/tomasbjerre/java-method-invocation-builder/commit/0fbf46b33115f19) Tomas Bjerre)  
+- update gradle-conventions to 2.1.2 and bump outdated dependencies ([059dc](https://github.com/tomasbjerre/java-method-invocation-builder/commit/059dc631680a8fc) Tomas Bjerre)  
+- gradle 9 ([1f049](https://github.com/tomasbjerre/java-method-invocation-builder/commit/1f049ec2134b971) Tomas Bjerre)  
+### Other changes
+
+**Fix broken Maven Central badge in README**
+
+* maven-badges.herokuapp.com is down; switch to img.shields.io badge 
+* linking to search.maven.org. 
+* Co-Authored-By: Claude Sonnet 5 &lt;noreply@anthropic.com&gt; 
+* Claude-Session: https://claude.ai/code/session_011PGVf85V1VhJj4oM3rKh7b 
+
+[fc914](https://github.com/tomasbjerre/java-method-invocation-builder/commit/fc9140a7fe3b76a) Tomas Bjerre *2026-09-13 08:52:01*
+
+
 ## 1.4.2 (2025-02-09)
 
 ### Bug Fixes
