@@ -14,6 +14,7 @@ There is a Maven example [here](https://github.com/tomasbjerre/java-method-invoc
 
 There are some [examples here](https://github.com/tomasbjerre/java-method-invocation-builder/tree/master/src/test/java/se/bjurr/jmib/testcases) that generates [these builders](https://github.com/tomasbjerre/java-method-invocation-builder/tree/master/src/test/expected/se/bjurr/jmib/testcases).
 
+> Note: 2.x.y requires Java 17
 
 ## Configuraion
 

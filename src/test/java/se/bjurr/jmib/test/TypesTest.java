@@ -9,8 +9,8 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import se.bjurr.jmib.testcases.AClass;
 import se.bjurr.jmib.testcases.AnInterface;
 import se.bjurr.jmib.testcases.ClassWithConstructor;
@@ -20,7 +20,7 @@ public class TypesTest {
   private static final String TESTCASES_DIR = "src/test/java/se/bjurr/jmib/testcases/";
 
   @SuppressWarnings("unchecked")
-  @BeforeClass
+  @BeforeAll
   public static void generate() throws IOException {
     Iterable<? extends File> filesToCompile = findAllJavaFiles(new File(TESTCASES_DIR));
     List<Class<?>> filesToProcess =

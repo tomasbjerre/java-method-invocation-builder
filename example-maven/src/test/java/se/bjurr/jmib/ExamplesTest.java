@@ -7,7 +7,7 @@ import static se.bjurr.jmib.maven.AnInterfaceDefaultValuesBuilder.defaultValues;
 import static se.bjurr.jmib.maven.CarServiceGetCarsByFilterBuilder.getCarsByFilter;
 
 import java.io.IOException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import se.bjurr.jmib.maven.AClass;
 import se.bjurr.jmib.maven.AnInterface;
 import se.bjurr.jmib.maven.CarService;
