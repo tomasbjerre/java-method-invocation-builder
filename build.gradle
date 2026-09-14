@@ -20,7 +20,7 @@ formatting {
 
 dependencies {
 	implementation 'com.squareup:javapoet:1.13.0'
-	implementation 'se.bjurr.jmib:java-method-invocation-builder-annotations:1.4.2'
+	implementation "se.bjurr.jmib:java-method-invocation-builder-annotations:1.5.0"
 
 	testImplementation 'org.junit.jupiter:junit-jupiter:6.1.3'
 	testImplementation "org.assertj:assertj-core:3.27.7"
