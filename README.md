@@ -91,9 +91,9 @@ public class CarServiceUser {
 
 ### Example 2
 
-This is the original use case that triggered me to start working with this project. **Note that this project has actually nothing to do with [Retrofit](http://square.github.io/retrofit/) or REST services at all**. It can be used on any class, or interface, instance.
+This is the original use case that triggered me to start working with this project. **Note that this project has actually nothing to do with [Retrofit](https://github.com/square/retrofit) or REST services at all**. It can be used on any class, or interface, instance.
 
-I am using [Retrofit](http://square.github.io/retrofit/) to create a client for BitBucket Server. That project is hosted [here](https://github.com/tomasbjerre/bitbucket-server-java-client). Here is the interface that specifies the *pullrequests* REST resource.
+I am using [Retrofit](https://github.com/square/retrofit) to create a client for BitBucket Server. Here is the interface that specifies the *pullrequests* REST resource.
 
 ```
 public interface BitBucketServerService {
