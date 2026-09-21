@@ -12,7 +12,7 @@
 
 	<properties>
 		<jmib-annotations.version>1.5.0</jmib-annotations.version>
-		<jmib.version>1.4.2</jmib.version>
+		<jmib.version>2.0.0</jmib.version>
 	</properties>
 
 	<build>
