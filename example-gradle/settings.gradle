@@ -7,7 +7,7 @@ pluginManagement {
 }
 
 plugins {
-	id "se.bjurr.gradle.update-versions" version "2.0.0" apply false
+	id "se.bjurr.gradle.update-versions" version "3.0.1" apply false
 }
 
 rootProject.name = 'java-method-invocation-builder-example-gradle'
