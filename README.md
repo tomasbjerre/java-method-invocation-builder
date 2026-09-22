@@ -2,7 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/se.bjurr.jmib/java-method-invocation-builder.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/se.bjurr.jmib/java-method-invocation-builder)
 
-This is a Java library that enables automatic generation of builders at compile time. Builders used for invoking methods on instantiated objects. It enables default values of method parameters and is making the invocations readable.
+It enables default values of method parameters and is making method invocations readable with builder pattern. Builders are generated at compile time and used for invoking methods on instantiated objects.
 
 It does not solve the same problem as [Immutables](https://immutables.github.io/), [POJOBuilder](https://github.com/mkarneim/pojobuilder) or [Lombok](https://projectlombok.org/). They are generating builders for creating instances of types. This is about invoking methods on previously instantiated types.
 
