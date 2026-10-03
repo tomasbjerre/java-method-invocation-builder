@@ -8,13 +8,13 @@ public class ClassMethod {
   private final String name;
   private final List<ClassMethodParameter> parameters;
   private final TypeMirror returnType;
-  private final ClassMethodTypeParameterList typeParameters;
+  private final ClassMethodTypeParameters typeParameters;
 
   public ClassMethod(
       String name,
       TypeMirror returnType,
       List<ClassMethodParameter> parameters,
-      ClassMethodTypeParameterList typeParameters) {
+      ClassMethodTypeParameters typeParameters) {
     this.name = name;
     this.returnType = returnType;
     this.parameters = parameters;
@@ -33,7 +33,7 @@ public class ClassMethod {
     return this.returnType;
   }
 
-  public ClassMethodTypeParameterList getTypeParameters() {
+  public ClassMethodTypeParameters getTypeParameters() {
     return typeParameters;
   }
 

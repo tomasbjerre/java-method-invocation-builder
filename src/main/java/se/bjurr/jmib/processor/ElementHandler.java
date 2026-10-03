@@ -32,6 +32,7 @@ import se.bjurr.jmib.generator.CodeGenerator;
 import se.bjurr.jmib.model.ClassMethod;
 import se.bjurr.jmib.model.ClassMethodParameter;
 import se.bjurr.jmib.model.ClassMethodTypeParameterList;
+import se.bjurr.jmib.model.ClassMethodTypeParameters;
 import se.bjurr.jmib.model.ClassModel;
 
 public class ElementHandler {
@@ -100,7 +101,7 @@ public class ElementHandler {
   }
 
   private ClassMethod handle(ExecutableElement member) {
-    final ClassMethodTypeParameterList typeParameters =
+    final ClassMethodTypeParameters typeParameters =
         ClassMethodTypeParameterList.newInstance(member.getTypeParameters());
     final List<ClassMethodParameter> parameters = new ArrayList<>();
     final TypeMirror returnType = member.getReturnType();
