@@ -1,3 +1,15 @@
+## 2.0.2 (2026-10-03)
+
+### Bug Fixes
+
+-  remove literal quotes from gradle.properties description ([f687a](https://github.com/tomasbjerre/java-method-invocation-builder/commit/f687adadb289f3b) Tomas Bjerre)  
+
+### Dependency updates
+
+- update plugin se.bjurr.gradle.bundle-jar to v2.4.1 (#17) ([c3ce7](https://github.com/tomasbjerre/java-method-invocation-builder/commit/c3ce7740574a8b9) renovate[bot])  
+- update dependency maven to v3.10.0 (#20) ([1465d](https://github.com/tomasbjerre/java-method-invocation-builder/commit/1465d33eec95456) renovate[bot])  
+- update dependency se.bjurr.jmib:java-method-invocation-builder-annotations to v1.5.1 (#19) ([4fefe](https://github.com/tomasbjerre/java-method-invocation-builder/commit/4fefed48d53d251) renovate[bot])  
+- update dependency se.bjurr.jmib:java-method-invocation-builder-annotations to v1.5.1 (#18) ([5bd8d](https://github.com/tomasbjerre/java-method-invocation-builder/commit/5bd8d7b9b5bc182) renovate[bot])  
 ## 2.0.0 (2026-09-14)
 
 ### Breaking changes
