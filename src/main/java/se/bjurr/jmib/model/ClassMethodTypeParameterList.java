@@ -6,7 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.lang.model.element.TypeParameterElement;
 
-public class ClassMethodTypeParameterList extends LinkedList<ClassMethodTypeParameter> {
+public class ClassMethodTypeParameterList extends LinkedList<ClassMethodTypeParameter>
+    implements ClassMethodTypeParameters {
 
   private static final long serialVersionUID = 1L;
 
@@ -14,15 +15,16 @@ public class ClassMethodTypeParameterList extends LinkedList<ClassMethodTypePara
     super();
   }
 
-  public static ClassMethodTypeParameterList newInstance(
+  public static ClassMethodTypeParameters newInstance(
       List<? extends TypeParameterElement> typeParameterElements) {
-    ClassMethodTypeParameterList typeParameters = new ClassMethodTypeParameterList();
+    final ClassMethodTypeParameterList typeParameters = new ClassMethodTypeParameterList(); // NOPMD
     for (TypeParameterElement typeParameterElement : typeParameterElements) {
       typeParameters.add(new ClassMethodTypeParameter(typeParameterElement));
     }
     return typeParameters;
   }
 
+  @Override
   public Iterable<TypeVariableName> toTypeVariableNameList() {
     List<TypeVariableName> typeVariableNames = new LinkedList<>();
     for (ClassMethodTypeParameter typeParameter : this) {
@@ -35,6 +37,7 @@ public class ClassMethodTypeParameterList extends LinkedList<ClassMethodTypePara
     return typeVariableNames;
   }
 
+  @Override
   public TypeName[] toTypeNameArray() {
     int index = 0;
     TypeName[] typeNames = new TypeName[size()];
