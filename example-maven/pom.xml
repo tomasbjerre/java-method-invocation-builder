@@ -11,7 +11,7 @@
 	<name>Example maven</name>
 
 	<properties>
-		<jmib-annotations.version>1.5.1</jmib-annotations.version>
+		<jmib-annotations.version>1.5.2</jmib-annotations.version>
 		<jmib.version>2.0.2</jmib.version>
 	</properties>
 
