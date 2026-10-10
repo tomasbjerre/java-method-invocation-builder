@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
- compileOnly 'se.bjurr.jmib:java-method-invocation-builder-annotations:1.5.1'
+ compileOnly 'se.bjurr.jmib:java-method-invocation-builder-annotations:1.5.2'
  annotationProcessor 'se.bjurr.jmib:java-method-invocation-builder:2.0.2'
 }
 
