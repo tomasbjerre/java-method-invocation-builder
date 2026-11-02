@@ -1,3 +1,15 @@
+## 2.0.3 (2026-10-27)
+
+### Dependency updates
+
+- update dependency org.apache.maven.plugins:maven-surefire-plugin to v3.6.1 (#29) ([cc7c5](https://github.com/tomasbjerre/java-method-invocation-builder/commit/cc7c569767e7072) renovate[bot])  
+- update dependency gradle to v9.8.2 (#28) ([bd749](https://github.com/tomasbjerre/java-method-invocation-builder/commit/bd74920cdae43fd) renovate[bot])  
+- update dependency se.bjurr.jmib:java-method-invocation-builder-annotations to v1.5.2 (#25) ([c5ef5](https://github.com/tomasbjerre/java-method-invocation-builder/commit/c5ef5389ef81084) renovate[bot])  
+- update dependency se.bjurr.jmib:java-method-invocation-builder-annotations to v1.5.2 (#24) ([c0ec5](https://github.com/tomasbjerre/java-method-invocation-builder/commit/c0ec5e5baf67ebb) renovate[bot])  
+- update dependency se.bjurr.jmib:java-method-invocation-builder to v2.0.2 (#23) ([8f7c8](https://github.com/tomasbjerre/java-method-invocation-builder/commit/8f7c8c6b5004188) renovate[bot])  
+- update dependency gradle to v9.8.1 (#27) ([03cf8](https://github.com/tomasbjerre/java-method-invocation-builder/commit/03cf8edbdddd94b) renovate[bot])  
+- update dependency se.bjurr.jmib:java-method-invocation-builder to v2.0.2 (#22) ([bcd14](https://github.com/tomasbjerre/java-method-invocation-builder/commit/bcd14a58b22ce1e) renovate[bot])  
+- update plugin se.bjurr.gradle.update-versions to v3.0.3 (#21) ([30603](https://github.com/tomasbjerre/java-method-invocation-builder/commit/30603dcc32ebb95) renovate[bot])  
 ## 2.0.2 (2026-10-03)
 
 ### Bug Fixes
